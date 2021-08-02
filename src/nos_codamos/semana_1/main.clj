@@ -9,7 +9,7 @@
 (def credit-card {:number          "111"
                   :cvv             "222"
                   :expiration-date (YearMonth/parse "2029-09")
-                  :limit           1000})
+                  :limit           100})
 
 (defn expired-card?
   [expiration-date purchase-date]
@@ -22,9 +22,13 @@
   [limit amount]
   (>= limit amount))
 
+(defn valid-amount?
+  [amount]
+  (and (number? amount) (pos? amount)))
+
 (defn valid-purchase?
-  [limit? expired-card?]
-  (and limit? (not expired-card?)))
+  [limit? expired-card? valid-amount?]
+  (and limit? valid-amount? (not expired-card?)))
 
 (defn new-limit
   [limit amount]
@@ -36,7 +40,8 @@
         expiration-date (:expiration-date credit-card)
         valid-purchase (valid-purchase?
                          (limit? current-limit amount)
-                         (expired-card? expiration-date date))
+                         (expired-card? expiration-date date)
+                         (valid-amount? amount))
         limit-to-update (if valid-purchase
                           (new-limit current-limit amount)
                           current-limit)
@@ -89,7 +94,7 @@
     (total-purchases-amount monthly-purchases)))
 
 (def purchase-1 (purchase (LocalDate/parse "2021-05-07")
-                          199
+                          0
                           "iFood"
                           "Restaurant"
                           credit-card))
