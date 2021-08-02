@@ -15,3 +15,12 @@
   (is (not (valid-amount? -0.1)))
   (testing "purchase amount string")
   (is (not (valid-amount? "0.1"))))
+
+(deftest purchase-test
+  (testing "adding new purchase")
+  (def purchase-example (purchase (LocalDate/parse "2021-05-07")
+                                  500
+                                  "iFood"
+                                  "Restaurant"
+                                  credit-card))
+  (is purchase-example))
