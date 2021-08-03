@@ -36,6 +36,8 @@
 
 (def all-purchases-test [purchase-1-test purchase-2-test purchase-3-test purchase-4-test])
 
+(def approved-purchases-test (search-purchases all-purchases-test {:approved? true}))
+
 (deftest valid-amount?-test
   (testing "valid purchase amount")
   (is (not (valid-amount? nil)))
@@ -96,3 +98,8 @@
   (testing "listing all approved purchases")
   (is (= (filter #(= (:approved? %) true) all-purchases-test)
          (search-purchases all-purchases-test {:approved? true}))))
+
+(deftest group-purchases-by-category-test
+  (testing "listing purchases by category")
+  (is (= (list {"Restaurant" 600})
+         (group-purchases-by-category approved-purchases-test))))
