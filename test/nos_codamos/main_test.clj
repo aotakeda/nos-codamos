@@ -4,6 +4,38 @@
   (:import (java.time LocalDate YearMonth)
            (java.time.temporal ChronoUnit)))
 
+(def credit-card-test {:number          "111"
+                       :cvv             "222"
+                       :expiration-date (YearMonth/parse "2029-09")
+                       :limit           3000})
+
+(def purchase-1-test
+  (purchase (LocalDate/parse "2021-10-07")
+            100
+            "iFood"
+            "Restaurant"
+            (update credit-card-test :limit - 100)))
+(def purchase-2-test
+  (purchase (LocalDate/parse "2021-10-07")
+            200
+            "iFood"
+            "Restaurant"
+            (update credit-card-test :limit - 200)))
+(def purchase-3-test
+  (purchase (LocalDate/parse "2021-10-07")
+            300
+            "iFood"
+            "Restaurant"
+            (update credit-card-test :limit - 300)))
+(def purchase-4-test
+  (purchase (LocalDate/parse "2021-10-07")
+            6000
+            "iFood"
+            "Restaurant"
+            (:credit-card purchase-3-test)))
+
+(def all-purchases-test [purchase-1-test purchase-2-test purchase-3-test purchase-4-test])
+
 (deftest valid-amount?-test
   (testing "valid purchase amount")
   (is (not (valid-amount? nil)))
@@ -15,10 +47,6 @@
 
 (deftest purchase-test
   (testing "adding new purchase")
-  (def credit-card-test {:number          "111"
-                         :cvv             "222"
-                         :expiration-date (YearMonth/parse "2029-09")
-                         :limit           3000})
   (is (= {:date        (LocalDate/parse "2021-05-07")
           :amount      0
           :merchant    "iFood"
@@ -63,3 +91,8 @@
                    "iFood"
                    "Restaurant"
                    credit-card-test))))
+
+(deftest search-purchases-test
+  (testing "listing all approved purchases")
+  (is (= (filter #(= (:approved? %) true) all-purchases-test)
+         (search-purchases all-purchases-test {:approved? true}))))
