@@ -5,16 +5,13 @@
            (java.time.temporal ChronoUnit)))
 
 (deftest valid-amount?-test
-  (testing "purchase amount nil")
-  (is (not (valid-amount? nil)))
-  (testing "purchase amount zero")
-  (is (not (valid-amount? 0)))
-  (testing "purchase amount positive")
-  (is (valid-amount? 0.1))
-  (testing "purchase amount negative")
-  (is (not (valid-amount? -0.1)))
-  (testing "purchase amount string")
-  (is (not (valid-amount? "0.1"))))
+  (testing "valid purchase amount")
+    (is (not (valid-amount? nil)))
+    (is (not (valid-amount? 0)))
+    (is (valid-amount? 0.1))
+    (is (valid-amount? 1))
+    (is (not (valid-amount? -0.1)))
+    (is (not (valid-amount? "0.1"))))
 
 (deftest purchase-test
   (testing "adding new purchase")
