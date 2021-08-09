@@ -1,10 +1,10 @@
 (ns nos-codamos.semana-1.main
+  (:require [datomic.api :as d]
+            [nos-codamos.semana-3.db :as db]
+            [nos-codamos.semana-3.model :as model])
   (:import (java.time LocalDate YearMonth)
            (java.time.temporal ChronoUnit)))
 
-(def client-data {:full-name "Tiago Vidal"
-                  :cpf       "999.999.999-99"
-                  :email     "tiago.vidal@my-email.com.br"})
 
 (def credit-card {:number          "111"
                   :cvv             "222"
