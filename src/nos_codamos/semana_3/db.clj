@@ -10,37 +10,37 @@
 (defn erase-database []
   (d/delete-database db-uri))
 
-(def schema [{:db/ident       :full-name
+(def schema [{:db/ident       :client/full-name
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :cpf
+             {:db/ident       :client/cpf
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :email
+             {:db/ident       :client/email
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :credit-card-number
+             {:db/ident       :cc/credit-card-number
               :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :cvv
+             {:db/ident       :cc/cvv
               :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :expiration-date
+             {:db/ident       :cc/expiration-date
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :limit
+             {:db/ident       :cc/limit
               :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :date
+             {:db/ident       :purchase/date
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :amount
+             {:db/ident       :purchase/amount
               :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :merchant
+             {:db/ident       :purchase/merchant
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}
-             {:db/ident       :category
+             {:db/ident       :purchase/category
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}])
 

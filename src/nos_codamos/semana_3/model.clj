@@ -1,19 +1,19 @@
 (ns nos-codamos.semana-3.model)
 
 (defn new-client [full-name cpf email]
-  {:full-name full-name
-   :cpf       cpf
-   :email     email
+  {:client/full-name full-name
+   :client/cpf       cpf
+   :client/email     email
    })
 
 (defn new-credit-card [credit-card-number cvv expiration-date limit]
-  {:credit-card-number credit-card-number
-   :cvv                cvv
-   :expiration-date    expiration-date
-   :limit              limit})
+  {:cc/credit-card-number credit-card-number
+   :cc/cvv                cvv
+   :cc/expiration-date    expiration-date
+   :cc/limit              limit})
 
 (defn new-purchase [date amount merchant category]
-  {:date     date
-   :amount   amount
-   :merchant merchant
-   :category category})
+  {:purchase/date     date
+   :purchase/amount   amount
+   :purchase/merchant merchant
+   :purchase/category category})
