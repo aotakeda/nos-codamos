@@ -14,3 +14,8 @@
   (model/new-credit-card 8888 888 "09/2029" 100))
 
 (db/add-new-purchase conn (model/new-purchase "15/07/2021" 100 "iFood" "Restaurant"))
+
+(def db (d/db conn))
+
+(d/q '[:find ?entity
+      :where [?entity :purchase/merchant]] db)
