@@ -18,10 +18,22 @@
               :db/cardinality :db.cardinality/one}
              {:db/ident       :email
               :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :credit-card-number
+              :db/valueType   :db.type/long
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :cvv
+              :db/valueType   :db.type/long
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :expiration-date
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :limit
+              :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one}])
 
 (defn create-schema [conn]
   (d/transact conn schema))
 
-(defn add-new-client [conn client]
-  (d/transact conn client))
+(defn add-new-client-with-credit-card [conn client credit-card]
+  (d/transact conn [client credit-card]))

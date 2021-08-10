@@ -9,4 +9,4 @@
 
 (db/create-schema conn)
 
-(db/add-new-client conn [(model/new-client "Arthur Takeda", "123.456.789-10", "a@a.com")])
+(db/add-new-client-with-credit-card conn (model/new-client "Arthur Takeda", "123.456.789-10", "a@a.com") (model/new-credit-card 8888 888 "09/2029" 100))

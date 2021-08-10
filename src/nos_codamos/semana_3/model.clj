@@ -5,3 +5,9 @@
    :cpf       cpf
    :email     email
    })
+
+(defn new-credit-card [credit-card-number cvv expiration-date limit]
+  {:credit-card-number credit-card-number
+   :cvv                cvv
+   :expiration-date    expiration-date
+   :limit              limit})
