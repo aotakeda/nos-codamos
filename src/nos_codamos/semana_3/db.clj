@@ -30,6 +30,18 @@
               :db/cardinality :db.cardinality/one}
              {:db/ident       :limit
               :db/valueType   :db.type/long
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :date
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :amount
+              :db/valueType   :db.type/long
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :merchant
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one}
+             {:db/ident       :category
+              :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one}])
 
 (defn create-schema [conn]
@@ -37,3 +49,6 @@
 
 (defn add-new-client-with-credit-card [conn client credit-card]
   (d/transact conn [client credit-card]))
+
+(defn add-new-purchase [conn purchase]
+  (d/transact conn [purchase]))

@@ -11,3 +11,9 @@
    :cvv                cvv
    :expiration-date    expiration-date
    :limit              limit})
+
+(defn new-purchase [date amount merchant category]
+  {:date     date
+   :amount   amount
+   :merchant merchant
+   :category category})
