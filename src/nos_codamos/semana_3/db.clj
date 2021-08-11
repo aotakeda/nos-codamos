@@ -54,8 +54,12 @@
   (d/transact conn [purchase]))
 
 (defn all-purchases [db]
-  (d/q '[:find ?entity
-       :where [?entity :purchase/merchant]] db))
+  (d/q '[:find ?merchant ?amount ?category ?date
+         :where
+         [?purchase :purchase/category ?category]
+         [?purchase :purchase/amount ?amount]
+         [?purchase :purchase/merchant ?merchant]
+         [?purchase :purchase/date ?date]] db))
 
 (defn all-categories [db]
   (d/q '[:find ?category
