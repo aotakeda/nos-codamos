@@ -52,3 +52,11 @@
 
 (defn add-new-purchase [conn purchase]
   (d/transact conn [purchase]))
+
+(defn all-purchases [db]
+  (d/q '[:find ?entity
+       :where [?entity :purchase/merchant]] db))
+
+(defn all-categories [db]
+  (d/q '[:find ?category
+         :where [_ :purchase/category ?category]] db))

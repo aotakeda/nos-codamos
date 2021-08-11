@@ -17,5 +17,6 @@
 
 (def db (d/db conn))
 
-(d/q '[:find ?entity
-      :where [?entity :purchase/merchant]] db)
+(pprint (db/all-purchases (d/db conn)))
+
+(pprint (db/all-categories (d/db conn)))
