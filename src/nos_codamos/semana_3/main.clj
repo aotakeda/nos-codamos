@@ -18,9 +18,10 @@
 (db/add-new-purchase conn (model/new-purchase "15/07/2021" 60 "Netflix" "Entertainment"))
 (db/add-new-purchase conn (model/new-purchase "14/07/2021" 231 "Pet shop" "Pet"))
 
-
 (def db (d/db conn))
 
-(pprint (db/all-purchases (d/db conn)))
+(pprint (db/all-purchases-explicit (d/db conn)))
+
+(pprint (db/all-purchases-implicit (d/db conn)))
 
 (pprint (db/all-categories (d/db conn)))

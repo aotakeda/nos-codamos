@@ -53,13 +53,18 @@
 (defn add-new-purchase [conn purchase]
   (d/transact conn [purchase]))
 
-(defn all-purchases [db]
+(defn all-purchases-explicit [db]
   (d/q '[:find ?merchant ?amount ?category ?date
+         :keys purchase/merchant purchase/amount purchase/category purchase/date
          :where
          [?purchase :purchase/category ?category]
          [?purchase :purchase/amount ?amount]
          [?purchase :purchase/merchant ?merchant]
          [?purchase :purchase/date ?date]] db))
+
+(defn all-purchases-implicit [db]
+  (d/q '[:find (pull ?entity [*])
+         :where [?entity :purchase/merchant]] db))
 
 (defn all-categories [db]
   (d/q '[:find ?category
